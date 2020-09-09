@@ -18,6 +18,16 @@ public class SwiftBugsnagCrashlyticsPlugin: NSObject, FlutterPlugin {
         if (apiKey != nil) {
             let config = BugsnagConfiguration(apiKey)
 
+            let releaseStage = arguments!["releaseStage"] as! String
+            if(releaseStage != nil) {
+              config.releaseStage = releaseStage
+            }
+
+            let appVersion = arguments!["appVersion"] as! String
+            if(appVersion != nil) {
+              config.appVersion = appVersion
+            }
+
             Bugsnag.start(with: config)
             bugsnagStarted = true
       }
